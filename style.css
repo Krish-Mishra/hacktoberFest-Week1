@@ -1,0 +1,211 @@
+:root {
+  --bg-color: #f7f9f8;
+  --text-color: #2c3e50;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  
+  --zen-bg: #000000;
+  --zen-text: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  overflow-x: hidden;
+}
+
+/* Zen mode layout locking */
+body.zen-active {
+  background-color: var(--zen-bg);
+  overflow: hidden;
+}
+
+#app {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* State management */
+.state {
+  display: none;
+  animation: fadeIn 0.4s ease forwards;
+}
+.state.active {
+  display: block;
+}
+.hidden {
+  display: none !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+select, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: var(--surface);
+  appearance: none;
+}
+select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.875rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn.primary {
+  background-color: var(--primary);
+  color: white;
+}
+.btn.primary:hover {
+  background-color: var(--primary-hover);
+}
+.btn.large {
+  padding: 1.25rem;
+  font-size: 1.125rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.btn.text {
+  background: none;
+  color: #64748b;
+}
+.btn.dim {
+  color: var(--zen-text);
+  margin-top: auto;
+  margin-bottom: 2rem;
+}
+
+/* Mission State */
+#mission-description {
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+}
+
+#mission-steps {
+  list-style: none;
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+#mission-steps li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+#mission-steps li:last-child {
+  margin-bottom: 0;
+}
+#mission-steps li::before {
+  content: '•';
+  color: var(--primary);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Zen State */
+#state-zen {
+  height: 100%;
+  flex: 1;
+}
+.zen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 4rem);
+}
+#countdown {
+  font-size: 5rem;
+  font-weight: 300;
+  color: var(--zen-text);
+  margin-bottom: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+.zen-hint {
+  color: var(--zen-text);
+  opacity: 0.5;
+}
+
+/* Loading Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(59, 130, 246, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin 1s ease-in-out infinite;
+  margin: 2rem auto;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+#loading, #error-message {
+  text-align: center;
+  padding: 3rem 0;
+}

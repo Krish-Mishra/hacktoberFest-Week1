@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ZenStep - Touch Grass</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    
+    <!-- State 1: Configuration -->
+    <section id="state-config" class="state active">
+      <h1>ZenStep</h1>
+      <p class="subtitle">Mindful outdoor missions.</p>
+      
+      <form id="config-form">
+        <div class="form-group">
+          <label for="environment">Environment</label>
+          <select id="environment" required>
+            <option value="Urban Campus">Urban Campus</option>
+            <option value="Nature Trail">Nature Trail</option>
+            <option value="City Park">City Park</option>
+            <option value="Neighborhood">Neighborhood</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="time">Time Available</label>
+          <select id="time" required>
+            <option value="10">10 mins</option>
+            <option value="15">15 mins</option>
+            <option value="20">20 mins</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="vibe">Vibe</label>
+          <select id="vibe" required>
+            <option value="Curious">Curious</option>
+            <option value="Relaxed">Relaxed</option>
+            <option value="Energetic">Energetic</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="btn primary">Generate Mission</button>
+      </form>
+    </section>
+    
+    <!-- State 2: Mission Review -->
+    <section id="state-mission" class="state">
+      <div id="loading" class="hidden">
+        <div class="spinner"></div>
+        <p>Curating your mission...</p>
+      </div>
+      
+      <div id="mission-content" class="hidden">
+        <h2 id="mission-title">Mission Title</h2>
+        <p id="mission-description">Description goes here.</p>
+        
+        <ul id="mission-steps">
+          <!-- Steps injected via JS -->
+        </ul>
+        
+        <button id="btn-start-zen" class="btn primary large">Start Zen Mode & Begin</button>
+        <button id="btn-back-config" class="btn text">Cancel</button>
+      </div>
+      
+      <div id="error-message" class="hidden">
+        <p>Could not generate mission. Please try again.</p>
+        <button id="btn-retry" class="btn">Retry</button>
+      </div>
+    </section>
+    
+    <!-- State 3: Zen Mode -->
+    <section id="state-zen" class="state">
+      <div class="zen-container">
+        <div id="countdown">10:00</div>
+        <p class="zen-hint">Screen off. Phone away.</p>
+        <button id="btn-give-up" class="btn text dim">Give Up / End Early</button>
+      </div>
+    </section>
+    
+    <!-- State 4: Reflection -->
+    <section id="state-reflection" class="state">
+      <h2>Welcome back</h2>
+      <p>How was your mission?</p>
+      
+      <textarea id="reflection-text" rows="4" placeholder="Write one sentence about what you noticed outside..."></textarea>
+      
+      <button id="btn-reset" class="btn primary">Save & Start Over</button>
+    </section>
+    
+  </div>
+
+  <script src="config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
